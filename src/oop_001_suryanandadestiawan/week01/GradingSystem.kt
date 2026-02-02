@@ -1,9 +1,10 @@
 package oop_001_suryanandadestiawan.week01
 
 fun main() {
-    var name: String = "Surya Nanda"
-    var score: Int = 80
+    // refactor : gunakan val dan hapus tipe data eksplisit
+    val name = "Surya Nanda"
+    val score = 80
 
-    // Concatenation gaya lama
-    println("Nama: " + name + ", Nilai: " + score)
+    // refactor: string template ($name)
+    println("Nama: $name, Nilai: $score")
 }
