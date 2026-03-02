@@ -14,13 +14,11 @@ fun main() {
         // Pemanggilan Runtime Polymorphism
         pegawai.bekerja()
 
-        // pegawai.mengajar() // INI AKAN ERROR karena tipe referensinya adalah Pegawai
-
         // Smart Casting dengan is dan when
         when (pegawai) {
             is Dosen -> {
                 println("=> Terdeteksi sebagai Dosen (NIDN: ${pegawai.nidn})")
-                pegawai.mengajar() // Smart cast! Tidak perlu manual casting (as)
+                pegawai.mengajar()
             }
 
             is Admin -> {
@@ -31,4 +29,12 @@ fun main() {
 
         println("------------------------")
     }
+
+    println("=== TEST MATH HELPER ===")
+
+    val mathHelper = MathHelper()
+
+    println("Luas Persegi (sisi = 4): ${mathHelper.hitungLuas(4)}")
+    println("Luas Persegi Panjang (5 x 3): ${mathHelper.hitungLuas(5, 3)}")
+    println("Luas Lingkaran (r = 7.0): ${mathHelper.hitungLuas(7.0)}")
 }
