@@ -47,8 +47,19 @@ fun main() {
     val metodePembayaran: List<PaymentMethod> = listOf(eWallet, creditCard)
 
     for (metode in metodePembayaran) {
+
         println("Memproses pembayaran untuk ${metode.accountName}")
         metode.processPayment(75000.0)
+
+        // SMART CASTING CHALLENGE
+        if (metode is EWallet) {
+            println(">> Terdeteksi sebagai EWallet. Melakukan top up otomatis...")
+            metode.topUp(50000.0)
+
+            println(">> Mencoba transaksi lagi...")
+            metode.processPayment(75000.0)
+        }
+
         println("------------------------")
     }
 }
