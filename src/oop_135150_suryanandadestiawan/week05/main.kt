@@ -37,4 +37,18 @@ fun main() {
     println("Luas Persegi (sisi = 4): ${mathHelper.hitungLuas(4)}")
     println("Luas Persegi Panjang (5 x 3): ${mathHelper.hitungLuas(5, 3)}")
     println("Luas Lingkaran (r = 7.0): ${mathHelper.hitungLuas(7.0)}")
+
+
+    println("=== SISTEM PEMBAYARAN ===")
+
+    val eWallet = EWallet(accountName = "Surya", balance = 50000.0)
+    val creditCard = CreditCard(accountName = "Surya", limit = 100000.0)
+
+    val metodePembayaran: List<PaymentMethod> = listOf(eWallet, creditCard)
+
+    for (metode in metodePembayaran) {
+        println("Memproses pembayaran untuk ${metode.accountName}")
+        metode.processPayment(75000.0)
+        println("------------------------")
+    }
 }
