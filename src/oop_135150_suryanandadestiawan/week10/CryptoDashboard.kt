@@ -10,4 +10,12 @@ fun main() {
 
     // Bungkus data dalam ApiResponse generic
     val response = ApiResponse("200 OK", coinRepo.getAll())
+
+    // Tampilkan dashboard
+    println("=== CRYPTO WALLET DASHBOARD ===")
+    println("API Status: ${response.status}")
+    println("\n--- COIN PORTFOLIO ---")
+    response.data.forEach { coin ->
+        println("Coin: ${coin.name} | Balance: ${coin.balance}")
+    }
 }
