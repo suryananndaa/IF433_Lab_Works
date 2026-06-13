@@ -10,4 +10,13 @@ fun main() {
     }.also {
         homeDevices.add(it)
     }
+
+    // Konfigurasi Keamanan: apply untuk setup, also untuk log + add
+    SmartDevice("Ezviz Outdoor", "Camera").apply {
+        isOnline = true
+        powerLoad = 5
+    }.also {
+        println("(LOG) Kamera terhubung")
+        homeDevices.add(it)
+    }
 }
