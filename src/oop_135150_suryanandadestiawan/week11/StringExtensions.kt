@@ -9,3 +9,9 @@ fun String.addGreeting(): String {
 fun String.repeatTimes(n: Int): String {
     return this.repeat(n)
 }
+
+// Extension pada tipe nullable String?
+fun String?.isNullOrEmptyCustom(): Boolean {
+    // 'this' bisa bernilai null, jadi harus ditangani
+    return this == null || this.isEmpty()
+}
