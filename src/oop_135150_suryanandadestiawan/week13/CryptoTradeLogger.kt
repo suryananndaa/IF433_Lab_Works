@@ -64,4 +64,8 @@ fun main() {
     // Injecting Malformed Data untuk test robustness
     File("crypto_trades.csv").appendText("CORRUPT_ID,DOGEUSDT,Hold,XX,YY\n")
     println("Baris korup berhasil di-inject ke crypto_trades.csv")
+
+    // Aggregation & Calculation
+    val loadedData = loadTrades(path = "crypto_trades.csv")
+    val totalPnl = loadedData.sumOf { it.pnl }
 }
