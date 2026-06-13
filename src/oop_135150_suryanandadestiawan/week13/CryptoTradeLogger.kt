@@ -39,3 +39,13 @@ fun saveTrades(trades: List<TradeRecord>, path: String) {
         }
     }
 }
+
+// Load System (Safe Skip)
+fun loadTrades(path: String): List<TradeRecord> {
+    return try {
+        File(path).readLines().mapNotNull { fromCsvTrade(it) }
+    } catch (e: FileNotFoundException) {
+        println("Error: File $path tidak ditemukan!")
+        emptyList()
+    }
+}
