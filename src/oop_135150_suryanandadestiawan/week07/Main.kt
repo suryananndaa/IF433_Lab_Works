@@ -46,4 +46,15 @@ fun main() {
     println("Drop chance LEGENDARY: ${ItemRarity.LEGENDARY.dropChance}%")
     val starterSword = Weapon.forgeStarterSword()
     println("Senjata awal pemain: $starterSword")
+
+    println("\n=== BLACKSMITH UPGRADE (copy) & EVENT DISPATCH ===")
+    // Upgrade senjata menggunakan copy() — immutability terjaga
+    val upgradedItem = starterSword.item.copy(damage = 25)
+    println("Senjata setelah upgrade: $upgradedItem")
+
+    // Simulasi event berurutan
+    processEvent(BattleState.SafeZone)
+    processEvent(BattleState.MonsterEncounter("Goblin Nakal"))
+    processEvent(BattleState.LootDropped(upgradedItem))
+    processEvent(BattleState.GameOver("Terkena jebakan racun"))
 }
