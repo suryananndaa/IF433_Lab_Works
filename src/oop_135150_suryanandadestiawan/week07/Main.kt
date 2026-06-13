@@ -41,4 +41,9 @@ fun main() {
     println("\n=== TEST GAME MANAGER (SINGLETON) ===")
     GameManager.startGame() // Pertama kali: mulai game
     GameManager.startGame() // Kedua kali: membuktikan singleton mencegah duplikasi
+
+    println("\n=== SIMULASI RARITY & FACTORY ===")
+    println("Drop chance LEGENDARY: ${ItemRarity.LEGENDARY.dropChance}%")
+    val starterSword = Weapon.forgeStarterSword()
+    println("Senjata awal pemain: $starterSword")
 }
