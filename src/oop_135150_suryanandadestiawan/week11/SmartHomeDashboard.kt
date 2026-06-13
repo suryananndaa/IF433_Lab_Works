@@ -44,4 +44,8 @@ fun main() {
     // Kalkulasi total daya menggunakan run
     val totalPower = homeDevices.run { sumOf { it.powerLoad } }
     println("Total konsumsi daya: $totalPower Watt")
+
+    // Iterasi semua perangkat dengan extension function diagnose()
+    println("\n--- DEVICE DIAGNOSTICS ---")
+    homeDevices.forEach { println(it.diagnose()) }
 }
