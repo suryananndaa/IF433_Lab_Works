@@ -37,4 +37,8 @@ fun main() {
         is ApiResponse.Loading -> "Tampilkan Spinner"
     }
     println(uiMessage)
+
+    println("\n=== TEST GAME MANAGER (SINGLETON) ===")
+    GameManager.startGame() // Pertama kali: mulai game
+    GameManager.startGame() // Kedua kali: membuktikan singleton mencegah duplikasi
 }
