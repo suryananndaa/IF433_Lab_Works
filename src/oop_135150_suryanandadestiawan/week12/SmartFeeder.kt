@@ -32,4 +32,10 @@ fun main() {
     } finally {
         println("Siklus pengecekan dispenser pagi selesai.")
     }
+
+    // === JADWAL MAKAN 2: Makan Sore - runCatching ===
+    println("\n=== JADWAL MAKAN SORE ===")
+    runCatching {
+        dispenseKibble(requestedGram = 30, availableGram = 1000, isJammed = false)
+    }
 }
