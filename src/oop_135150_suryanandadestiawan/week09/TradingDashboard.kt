@@ -11,4 +11,7 @@ fun main() {
         TradeLog("BTCUSDT", "LONG",  10,   6.0,  "OPEN"),   // OPEN - tidak masuk pipeline
         TradeLog("ETHUSDT", "SHORT", 20,  -8.5,  "OPEN")    // OPEN - tidak masuk pipeline
     )
+
+    // Pipeline 1: Filter hanya CLOSED trades
+    val closedTrades = tradeHistory.filter { it.status == "CLOSED" }
 }
