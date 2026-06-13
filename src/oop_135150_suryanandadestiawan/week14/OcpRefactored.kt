@@ -15,3 +15,8 @@ class MemberDiscount : DiscountStrategy {
 class SafeDiscountCalculator(private val strategy: DiscountStrategy) {
     fun calculate(price: Double) = strategy.apply(price)
 }
+
+// Extension baru tanpa menyentuh SafeDiscountCalculator sama sekali
+class SeniorDiscount : DiscountStrategy {
+    override fun apply(price: Double) = price * 0.75
+}
