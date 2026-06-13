@@ -30,4 +30,9 @@ fun main() {
     val worstPerformersString = losingTrades
         .sortedBy { it.roe }
         .map { "LOSS [${it.pair} - ${it.position}]: ${it.roe}% ROE (Lev: ${it.leverage}x)" }
+
+    // Pipeline tambahan: Semua pasangan koin unik yang pernah ditradingkan
+    val uniquePairs = tradeHistory
+        .map { it.pair }
+        .toSet()
 }
