@@ -10,3 +10,6 @@ data class TradeRecord(
     val margin: Double,
     val pnl: Double
 )
+
+// Serialization (Object -> CSV)
+fun TradeRecord.toCsv(): String = "$id,$symbol,$type,$margin,$pnl"
