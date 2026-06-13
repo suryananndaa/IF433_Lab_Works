@@ -70,3 +70,50 @@ class SafeOrderProcessor(
         notifier.sendNotification("Pesanan $itemName Anda telah dikonfirmasi!")
     }
 }
+
+// ============================================================
+// REFACTORED: Fix OCP — PricingStrategy
+// ============================================================
+
+// Abstraksi kalkulasi harga (OCP)
+interface PricingStrategy {
+    fun calculate(price: Double): Double
+}
+
+class RegularPricing : PricingStrategy {
+    override fun calculate(price: Double): Double = price
+}
+
+class VipPricing : PricingStrategy {
+    override fun calculate(price: Double): Double = price * 0.90 // Diskon 10%
+}
+
+// OrderProcessor final: menerima PricingStrategy — blok when dihapus
+class FinalOrderProcessor(
+    val repo: OrderRepository,
+    val notifier: NotificationService,
+    val pricing: PricingStrategy
+) {
+    fun processOrder(itemName: String, basePrice: Double) {
+        val finalPrice = pricing.calculate(basePrice)
+        println("Memproses pesanan $itemName seharga $finalPrice")
+        repo.saveOrder(itemName, finalPrice, "")
+        notifier.sendNotification("Pesanan $itemName Anda telah dikonfirmasi!")
+    }
+}
+
+fun main() {
+    val repo     = CsvOrderRepository("orders.csv")
+    val notifier = EmailNotifier()
+
+    // Menggunakan SafeOrderProcessor (SRP + DIP fix)
+    val safeProcessor = SafeOrderProcessor(repo, notifier)
+    safeProcessor.processOrder("Laptop", 15000000.0, "VIP")
+
+    // Menggunakan FinalOrderProcessor (SRP + DIP + OCP fix)
+    val vipProcessor = FinalOrderProcessor(repo, notifier, VipPricing())
+    vipProcessor.processOrder("Headphone", 500000.0)
+
+    val regularProcessor = FinalOrderProcessor(repo, notifier, RegularPricing())
+    regularProcessor.processOrder("Mouse", 200000.0)
+}
