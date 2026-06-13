@@ -30,3 +30,12 @@ fun fromCsvTrade(line: String): TradeRecord? {
         null
     }
 }
+
+// Write System
+fun saveTrades(trades: List<TradeRecord>, path: String) {
+    File(path).printWriter().use { writer ->
+        trades.forEach { trade ->
+            writer.println(trade.toCsv())
+        }
+    }
+}
